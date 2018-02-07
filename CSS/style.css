@@ -1,0 +1,37 @@
+div.header {
+  margin-bottom: 15px;
+}
+h2 {
+  width:100%;
+  position: relative;
+  text-align: center;
+  font-size: 8vw;
+}
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+  margin-left: 20%;
+}
+
+
+li.close {
+  margin-left: 10%;
+}
+
+#myUL {
+  margin-top: 2%;
+  margin-left: 20%;
+}
+
+.close {
+  margin-right: 43%;
+}
