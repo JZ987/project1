@@ -34,10 +34,14 @@
 
 function addToList() {
   var inputValue = $('#myInput').val();
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(inputValue));
-  $("#myUL").append(li);
-  $('#myInput').val("");
+  if (inputValue == "") {
+    alert("You must write something!");
+  } else {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(inputValue));
+    $("#myUL").append(li);
+    $('#myInput').val("");
+  }
 }
 
 function checkOff() {
@@ -53,11 +57,7 @@ function setup() {
   $('#myInput').keypress(function(e){
       if(e.keyCode == 13){
         e.preventDefault();
-        if ($('#myInput').val() == "") {
-          alert("You must write something!");
-        } else {
-          addToList();
-        }
+        addToList();
       }
   });
   checkOff();
