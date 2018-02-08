@@ -1,11 +1,13 @@
 div.header {
   margin-bottom: 15px;
+  margin-top: 10%;
 }
 h2 {
   width:100%;
   position: relative;
   text-align: center;
   font-size: 8vw;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 ul li.checked::before {
@@ -20,18 +22,28 @@ ul li.checked::before {
   height: 15px;
   width: 7px;
   margin-left: 20%;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
+li {
+  border-color: #fff;
+  border-width: 0 2px 2px 0;
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
-li.close {
-  margin-left: 10%;
+ul li:hover {
+  font-size: 20px;
 }
 
 #myUL {
   margin-top: 2%;
-  margin-left: 20%;
+  margin-left: 25%;
 }
 
 .close {
   margin-right: 43%;
+}
+
+.close:hover{
+  font-size: 30px;
 }
