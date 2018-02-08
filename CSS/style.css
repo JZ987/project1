@@ -1,5 +1,9 @@
 body {
-  background-image: url("img.jpeg");
+  background: url("img.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 div.header {
@@ -15,25 +19,6 @@ h2 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-ul li.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-  margin-left: 20%;
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
-ul li.checked {
-    color: white;
-    text-decoration: line-through;
-} 
 
 li {
   border-color: #fff;
@@ -45,6 +30,11 @@ li {
 ul li:hover {
   font-size: 20px;
 }
+
+ul li.checked {
+  color: grey;
+  text-decoration: line-through;
+} 
 
 #myUL {
   margin-top: 2%;

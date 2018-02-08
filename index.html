@@ -16,14 +16,21 @@
       <div class="col-sm-6" style="margin-left:32%;">
         <input class = "form-control" type="text" id="myInput" placeholder="Enter Your Plan">
       </div>
-      <button type = "button" class = "btn btn-success" onclick="newElement()" class="addBtn">Add</button>
+      <button type = "button" class = "btn btn-danger" onclick="newElement()" class="addBtn">Add</button>
     </div>
 
     <ul id="myUL">
     </ul>
     
   </div>
+<script type="text/javascript">
+  var list = document.querySelector('ul');
+  list.addEventListener('click', function(str) {
+    if (str.target.tagName === 'LI') {
+      str.target.classList.toggle("checked");
+    }})
 
+</script>
 </body>
 </html>
 
