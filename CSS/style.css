@@ -1,5 +1,5 @@
 body {
-  background: url("img.jpeg") no-repeat center center fixed; 
+  background: url("img.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -10,6 +10,7 @@ div.header {
   margin-bottom: 15px;
   margin-top: 10%;
 }
+
 h2 {
   width:100%;
   position: relative;
@@ -18,7 +19,6 @@ h2 {
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
 }
-
 
 li {
   border-color: #fff;
@@ -34,7 +34,7 @@ ul li:hover {
 ul li.checked {
   color: grey;
   text-decoration: line-through;
-} 
+}
 
 #myUL {
   margin-top: 2%;
