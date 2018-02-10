@@ -3,7 +3,7 @@
 ## Web development project for Introduction to CS at NYU Tandon
 ## Group members:
 - Taimur Ghani
-- Zubin Srivastava
+- [Zubin Srivastava] (https://github.com/zsrivastava)
 - [Jack Zheng] (https://github.com/JZ987)
 - [Connie Zhou] (https://github.com/soy-sauce)
 - [Kaixuan Zhou] (https://github.com/ZhouJoseph)
