@@ -16,7 +16,7 @@ h2 {
   position: relative;
   text-align: center;
   font-size: 8vw;
-  color: white;
+  color: lime;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -29,6 +29,7 @@ li {
 
 ul li:hover {
   font-size: 20px;
+  color: yellow;
 }
 
 ul li.checked {
@@ -48,5 +49,5 @@ ul li.checked {
 
 .close:hover{
   font-size: 30px;
-  color: white;
+  color: red;
 }
