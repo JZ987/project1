@@ -22,7 +22,8 @@ h2 {
 
 ul li:hover {
   font-size: 20px;
-  color: white;
+  color: #fffcdb;
+  font-weight: bold;
 }
 
 li {
