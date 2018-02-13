@@ -16,8 +16,13 @@ h2 {
   position: relative;
   text-align: center;
   font-size: 8vw;
-  color: lime;
+  color: white;
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+ul li:hover {
+  font-size: 20px;
+  color: white;
 }
 
 li {
@@ -25,11 +30,6 @@ li {
   border-width: 0 2px 2px 0;
   font-family: 'Roboto Condensed', sans-serif;
   color: white;
-}
-
-ul li:hover {
-  font-size: 20px;
-  color: yellow;
 }
 
 ul li.checked {
@@ -42,12 +42,13 @@ ul li.checked {
   margin-left: 25%;
 }
 
+.close:hover{
+  font-size: 30px;
+  color: white;
+}
+
 .close {
   margin-right: 43%;
   color: white;
 }
 
-.close:hover{
-  font-size: 30px;
-  color: red;
-}
