@@ -44,7 +44,16 @@
             type: 'POST',
             data: $('form').serialize(),
             success: function(response){
-              console.log(response);
+              $('#myUL').empty();
+              for (var i = 0; i < response.length; i++) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(response[i]));
+                var span = document.createElement("span");
+                span.appendChild(document.createTextNode("\u00D7"));
+                span.className = 'close';
+                li.appendChild(span);
+                $("#myUL").append(li);
+              }
             },
             error: function(error){
               console.log(error);
@@ -54,26 +63,31 @@
         }
       }
 
-      function getData() {
-        $.ajax({
-          url: '/todo/read',
-          type: "GET",
-          success: function(response){
-            $('#myUL').empty();
-            for (var i = 0; i < response.length; i++) {
-              var li = document.createElement("li");
-              li.appendChild(document.createTextNode(response[i]));
-              var span = document.createElement("span");
-              span.appendChild(document.createTextNode("\u00D7"));
-              span.className = 'close';
-              li.appendChild(span);
-              $("#myUL").append(li);
-            }
+      // function getData() {
+      //   $.ajax({
+      //     url: '/todo/read',
+      //     type: "GET",
+      //     success: function(response){
+      //       $('#myUL').empty();
+      //       for (var i = 0; i < response.length; i++) {
+      //         var li = document.createElement("li");
+      //         li.appendChild(document.createTextNode(response[i]));
+      //         var span = document.createElement("span");
+      //         span.appendChild(document.createTextNode("\u00D7"));
+      //         span.className = 'close';
+      //         li.appendChild(span);
+      //         $("#myUL").append(li);
+      //       }
+      //     }
+      //   });
+      // }
+      //
+      function deleteItem() {
+        $("#myUL").click(function(e) {
+          if (e.target.tagName === 'SPAN') {
+            e.target.parentElement.remove();
           }
-        });
-      }
-
-      function deletItem() {
+        })
         $.ajax({
           url: '/todo/delete',
           type: "DELETE",
@@ -81,14 +95,13 @@
       }
 
       function setup() {
-        // $('#add').click(getData);
+        // $('#add').click(savaData);
         $('#myInput').keypress(function(e){
             if(e.keyCode == 13){
               e.preventDefault();
               saveData();
             }
         });
-        getData();
       }
 
       $(document).ready(setup);

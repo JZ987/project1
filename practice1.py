@@ -30,9 +30,9 @@ def fetchItems():
 # def updateItems():
 #     pass
 #
-# @app.route('/todo/delete', methods=['DETELE'])
-# def deteleItem():
-#     pass
+@app.route('/todo/delete', methods=['DETELE'])
+def deteleItem():
+    pass
 
 if __name__ == '__main__':
     app.run(debug=True)
