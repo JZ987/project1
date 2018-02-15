@@ -11,6 +11,7 @@
     <title>
       To Do List
     </title>
+
   </head>
   <body>
     <div class = "container-fluid">
@@ -19,21 +20,25 @@
       </div>
       <div class="row" style="margin-right: 15%">
         <div class="col-sm-6" style="margin-left: 32%">
-          <form action="/todo/create" method="post" role="form">
-            <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
-            <button type = "button" class = "btn btn-danger" class="addBtn" id="add">Add</button>
-          </form>
+          
+
+          
+          <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
+          <button type = "button" class = "btn btn-danger" class="addBtn" id="add" onclick="saveData()">Add</button>
+
+
         </div>
       </div>
       <div>
         <ul id="myUL">
-          <!-- {% for thing in todo %}
-          <li> {{thing}} </li>
+<!--           {% for thing in todo %}
+          <li id="myLI"> {{thing}}</li>
           {% endfor %} -->
         </ul>
       </div>
     </div>
-    <script>
+
+        <script>
       function saveData() {
         var newItem = $('#myInput').val()
         if (newItem == "") {
@@ -42,18 +47,15 @@
           $.ajax({
             url: '/todo/create',
             type: 'POST',
-            data: $('form').serialize(),
+            data: newItem,
             success: function(response){
-              $('#myUL').empty();
-              for (var i = 0; i < response.length; i++) {
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(response[i]));
-                var span = document.createElement("span");
-                span.appendChild(document.createTextNode("\u00D7"));
-                span.className = 'close';
-                li.appendChild(span);
-                $("#myUL").append(li);
-              }
+              var li = document.createElement("li");
+              li.appendChild(document.createTextNode(response[len(response)-1]));
+              var span = document.createElement("span");
+              span.appendChild(document.createTextNode("\u00D7"));
+              span.className = 'close';
+              li.appendChild(span);
+              $("#myUL").append(li);
             },
             error: function(error){
               console.log(error);
@@ -62,7 +64,6 @@
           $('#myInput').val("");
         }
       }
-
       // function getData() {
       //   $.ajax({
       //     url: '/todo/read',
@@ -81,7 +82,7 @@
       //     }
       //   });
       // }
-      //
+      
       function deleteItem() {
         $("#myUL").click(function(e) {
           if (e.target.tagName === 'SPAN') {
@@ -93,7 +94,6 @@
           type: "DELETE",
         })
       }
-
       function setup() {
         // $('#add').click(savaData);
         $('#myInput').keypress(function(e){
@@ -103,6 +103,8 @@
             }
         });
       }
+
+
 
       $(document).ready(setup);
     </script>

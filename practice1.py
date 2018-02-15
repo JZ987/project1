@@ -5,21 +5,25 @@ Created on Mon Feb 12 14:02:28 2018
 
 @author: Zhoukx.joseph
 """
-from flask import Flask, render_template, request, json, jsonify, redirect
-
-todo = []
+from flask import Flask, render_template, request, json, session, jsonify, redirect
 
 app = Flask(__name__)
+app.secret_key='the_secrete_key_which!.di!345'
 
 @app.route('/')
 def index():
-    return render_template("index.html", todo = todo)
+    session['username'] = []
+    return render_template("index.html")
 
 @app.route('/todo/create', methods=['POST'])
 def createItem():
-    newItem = request.form['myInput']
-    todo.append(newItem)
-    return jsonify(todo)
+    if request.method == 'POST':
+        
+        newItem = request.form['myInput']
+        session['username'].append(newItem)
+        return jsonify({'result' : 'success'})
+    else:
+        return 'error'
     # return redirect('/')
 
 @app.route('/todo/read')
