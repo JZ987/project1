@@ -1,0 +1,66 @@
+<!-- <!DOCTYPE html> -->
+ <html>
+   <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/bootstrap.css') }}">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- <script type="text/javascript" src="static/JS/script.js"></script> -->
+     <title>
+       To Do List
+     </title>
+   </head>
+   <body>
+     <div class = "container-fluid">
+       <div id="myDIV" class="header">
+         <h2 style="margin:5px"><b>My To Do List</b></h2>
+       </div>
+       <div class="row" style="margin-right: 15%">
+         <div class="col-sm-6" style="margin-left: 32%">
+           <form action="/todo/create" method="post" role="form">
+             <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
+             <button type = "button" class = "btn btn-danger" class="addBtn" id="add" onclick="saveData()">Add</button>
+           </form>
+         </div>
+       </div>
+       <div>
+         <ul id="myUL">
+           <!-- {% for thing in todo %}
+           <li> {{thing}} </li>
+           {% endfor %} -->
+         </ul>
+       </div>
+     </div>
+     <script>
+       function saveData() {
+         var newItem = $('#myInput').val()
+         if (newItem == "") {
+           alert("You must write something!");
+         } else {
+           $.ajax({
+             url: '/todo/create',
+             type: 'POST',
+             data: $('form').serialize(),
+             success: function(response){
+              $('#myUL').empty();
+              for (var i = 0; i < response.length; i++) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(response[i]));
+                var span = document.createElement("span");
+                span.appendChild(document.createTextNode("\u00D7"));
+                span.className = 'close';
+                li.appendChild(span);
+                $("#myUL").append(li);
+              }
+             },
+             error: function(error){
+               console.log(error);
+         }
+       })
+       }
+     }
+     </script>
+</body>
+</html>

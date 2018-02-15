@@ -5,40 +5,36 @@ Created on Mon Feb 12 14:02:28 2018
 
 @author: Zhoukx.joseph
 """
-from flask import Flask, jsonify,render_template,request, abort, redirect
-import json
-from uuid import uuid4
-todo = []
-token = None
-
+from flask import Flask, render_template, request, json, session, jsonify, redirect
 app = Flask(__name__)
-
+app.secret_key='the_secrete_key_which!.di!345'
 @app.route('/')
 def index():
-    return render_template('home.html', todo = todo)
+    if 'username' not in session:
+        session['username']=[]
+    return render_template("index.html")
 
 @app.route('/todo/create', methods=['POST'])
 def createItem():
-    if(request.form['myInput']!=''):
+    if request.method == 'POST':
         newItem = request.form['myInput']
-        todo.append(newItem)
-    return redirect('/')
+        session['username'].append(newItem)
+        return jsonify({ 'result' : 'success'})
+    else:
+        return 'error'
+    # return redirect('/')
 
 @app.route('/todo/read')
 def fetchItems():
-    return jsonify(todo)
-#@app.route('/update', methods = ['PUT'])
-#def updateTodo():
-#    pass
+    return jsonify(session['username'])
+
+# @app.route('/todo/update', methods=['PUT'])
+# def updateItems():
+#     pass
 #
-#@app.route('/delete', methods = ['DELETE'] )
-#def deleteTodo():
-#    if(request.headers.get('token')!= token or token is None):
-#        return abort(403)
-#    requestData = request.get_json().get('classmates')
-#    global ToDo
-#    ToDo = list(filter(lambda x: x not in requestData, ToDo))
-#    return jsonify(ToDo)
+@app.route('/todo/delete', methods=['DETELE'])
+def deteleItem():
+    pass
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
