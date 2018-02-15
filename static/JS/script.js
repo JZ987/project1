@@ -1,52 +1,23 @@
-// // Create a "close" button and append it to each list item
-// var myNodelist = document.getElementsByTagName("LI");
-//
-// // Click on a close button to hide the current list item
-// var close = document.getElementsByClassName("close");
-//
-// // Create a new list item when clicking on the "Add" button
-// function newElement() {
-//   var li = document.createElement("li");
-//   var inputValue = document.getElementById("myInput").value;
-//   var t = document.createTextNode(inputValue);
-//   li.appendChild(t);
-//
-//   if (inputValue === '') {
-//     alert("You must write something!");
-//   } else {
-//     document.getElementById("myUL").appendChild(li);
-//   }
-//   document.getElementById("myInput").value = "";
-//
-//   var span = document.createElement("SPAN");
-//   var txt = document.createTextNode("\u00D7");
-//   span.className = "close";
-//   span.appendChild(txt);
-//   li.appendChild(span);
-//
-//   for (i = 0; i < close.length; i++) {
-//     close[i].onclick = function() {
-//       var div = this.parentElement;
-//       div.style.display = "none";
-//     }
-//   }
-// }
-
 function addToList() {
   var inputValue = $('#myInput').val();
   if (inputValue == "") {
     alert("You must write something!");
   } else {
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode(inputValue));
-    var span = document.createElement("span");
-    span.appendChild(document.createTextNode("\u00D7"));
-    span.className = 'close';
-    li.appendChild(span);
-    $("#myUL").append(li);
+      $.ajax({
+        url: '/todo/create',
+        type: 'POST',
+        data: $('form').serialize(),
+        success: function(response){
+          console.log(response);
+        },s
+        error: function(error){
+          console.log(error);
+        }
+      });
     $('#myInput').val("");
   }
 }
+
 
 function checkOff() {
   $('#myUL').click(function(e) {
@@ -74,6 +45,25 @@ function setup() {
   });
   checkOff();
   removeFromList();
+}
+
+function getData() {
+  $.ajax({
+    url: '/todo/read',
+    type: "GET",
+    success: function(response){
+      $('#myUL').empty();
+      for (var i = 0; i < response.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(response[i]));
+        var span = document.createElement("span");
+        span.appendChild(document.createTextNode("\u00D7"));
+        span.className = 'close';
+        li.appendChild(span);
+        $("#myUL").append(li);
+      }
+    }
+  });
 }
 
 $(document).ready(setup);

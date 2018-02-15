@@ -17,15 +17,26 @@
       <div id="myDIV" class="header">
         <h2 style="margin:5px"><b>My To Do List</b></h2>
       </div>
+
+    <form action="/todo/create", method="POST">
       <div class="row" style="margin-right: 15%">
         <div class="col-sm-6" style="margin-left:32%;">
           <input class = "form-control" type="text" id="myInput" placeholder="Enter Your Plan">
         </div>
         <button type = "button" class = "btn btn-danger" class="addBtn" id="add">Add</button>
       </div>
+    </form>
+
+
+
       <div>
+
         <ul id="myUL">
+          {% for things in ToDo %}
+          <li> {{things}} </li>
+          {% endfor %}
         </ul>
+
       </div>
     </div>
   </body>
