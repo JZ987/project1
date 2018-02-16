@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/bootstrap.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="static/JS/script.js"></script> -->
     <title>
       To Do List
@@ -28,82 +27,71 @@
       <div>
         <ul id="myUL">
           <!-- {% for thing in todo %}
-          <li> {{thing}} </li>
+            <li>
+              {{ thing }}
+              <span class="close"> x </span>
+            </li>
           {% endfor %} -->
         </ul>
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
       function saveData() {
-        var newItem = $('#myInput').val()
+        var newItem = $('#myInput').val();
         if (newItem == "") {
           alert("You must write something!");
         } else {
-          $.ajax({
-            url: '/todo/create',
-            type: 'POST',
-            data: $('form').serialize(),
-            success: function(response){
-              $('#myUL').empty();
-              for (var i = 0; i < response.length; i++) {
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(response[i]));
-                var span = document.createElement("span");
-                span.appendChild(document.createTextNode("\u00D7"));
-                span.className = 'close';
-                li.appendChild(span);
-                $("#myUL").append(li);
-              }
-            },
-            error: function(error){
-              console.log(error);
-            }
-          });
+          var url = "/todo/create";
+          var settings = {type : "POST",
+                          data : {"newItem" : newItem},
+                          success: function(response) {
+                            var li = document.createElement("li");
+                            li.appendChild(document.createTextNode(response.result));
+                            var span = document.createElement("span");
+                            span.appendChild(document.createTextNode("\u00D7"));
+                            span.className = 'close';
+                            li.appendChild(span);
+                            $('#myUL').append(li);
+                          },
+                          error: function(error) {
+                            console.log(error);
+                          }};
+          $.ajax(url, settings);
           $('#myInput').val("");
         }
       }
 
-      // function getData() {
-      //   $.ajax({
-      //     url: '/todo/read',
-      //     type: "GET",
-      //     success: function(response){
-      //       $('#myUL').empty();
-      //       for (var i = 0; i < response.length; i++) {
-      //         var li = document.createElement("li");
-      //         li.appendChild(document.createTextNode(response[i]));
-      //         var span = document.createElement("span");
-      //         span.appendChild(document.createTextNode("\u00D7"));
-      //         span.className = 'close';
-      //         li.appendChild(span);
-      //         $("#myUL").append(li);
-      //       }
-      //     }
-      //   });
-      // }
-      //
       function deleteItem() {
         $("#myUL").click(function(e) {
           if (e.target.tagName === 'SPAN') {
+            var task = e.target.parentElement.innerText.slice(0, -1);
+            console.log(task);
+            var url = "/todo/delete";
+            var settings = {type : "DELETE",
+                            data : {item : task},
+                            success : function(response) {
+                              console.log(response.result);
+                            },
+                            error : function(error) {
+                              console.log(error);
+                            }};
+            $.ajax(url, settings);
             e.target.parentElement.remove();
           }
-        })
-        $.ajax({
-          url: '/todo/delete',
-          type: "DELETE",
         })
       }
 
       function setup() {
-        // $('#add').click(savaData);
+        $('#add').click(saveData);
         $('#myInput').keypress(function(e){
             if(e.keyCode == 13){
               e.preventDefault();
               saveData();
             }
         });
+        deleteItem();
       }
-
       $(document).ready(setup);
     </script>
   </body>
