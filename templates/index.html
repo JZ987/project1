@@ -10,6 +10,7 @@
     <title>
       To Do List
     </title>
+
   </head>
   <body>
     <div class = "container-fluid">
@@ -18,20 +19,17 @@
       </div>
       <div class="row" style="margin-right: 15%">
         <div class="col-sm-6" style="margin-left: 32%">
-          <form action="/todo/create" method="post" role="form">
-            <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
-            <button type = "button" class = "btn btn-danger" class="addBtn" id="add">Add</button>
-          </form>
+
+
+
+          <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
+          <button type = "button" class = "btn btn-danger" class="addBtn" id="add" onclick="saveData()">Add</button>
+
+
         </div>
       </div>
       <div>
         <ul id="myUL">
-          <!-- {% for thing in todo %}
-            <li>
-              {{ thing }}
-              <span class="close"> x </span>
-            </li>
-          {% endfor %} -->
         </ul>
       </div>
     </div>

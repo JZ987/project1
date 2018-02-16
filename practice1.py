@@ -5,14 +5,15 @@ Created on Mon Feb 12 14:02:28 2018
 
 @author: Zhoukx.joseph
 """
-from flask import Flask, render_template, request, json, jsonify, redirect
+from flask import Flask, render_template, request, json, session, jsonify, redirect
 
 todo = []
-
 app = Flask(__name__)
+app.secret_key='the_secrete_key_which!.di!345'
 
 @app.route('/')
 def index():
+    # session['username'] = []
     return render_template("index.html")
 
 @app.route('/todo/create', methods=['POST'])
@@ -28,7 +29,7 @@ def fetchItems():
 # @app.route('/todo/update', methods=['PUT'])
 # def updateItems():
 #     pass
-#
+
 @app.route('/todo/delete', methods=['DELETE'])
 def deteleItem():
     todo.remove(request.form['item'])
