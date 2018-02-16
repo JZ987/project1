@@ -13,14 +13,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html", todo = todo)
+    return render_template("index.html")
 
 @app.route('/todo/create', methods=['POST'])
 def createItem():
-    newItem = request.form['myInput']
+    newItem = request.form['newItem']
     todo.append(newItem)
-    return jsonify(todo)
-    # return redirect('/')
+    return jsonify({"result" : todo[-1]})
 
 @app.route('/todo/read')
 def fetchItems():
@@ -30,9 +29,10 @@ def fetchItems():
 # def updateItems():
 #     pass
 #
-@app.route('/todo/delete', methods=['DETELE'])
+@app.route('/todo/delete', methods=['DELETE'])
 def deteleItem():
-    pass
+    todo.remove(request.form['item'])
+    return jsonify({"result" : "success"})
 
 if __name__ == '__main__':
     app.run(debug=True)
