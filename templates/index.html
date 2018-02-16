@@ -1,0 +1,96 @@
+<!-- <!DOCTYPE html> -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <!-- <script type="text/javascript" src="static/JS/script.js"></script> -->
+    <title>
+      To Do List
+    </title>
+
+  </head>
+  <body>
+    <div class = "container-fluid">
+      <div id="myDIV" class="header">
+        <h2 style="margin:5px"><b>My To Do List</b></h2>
+      </div>
+      <div class="row" style="margin-right: 15%">
+        <div class="col-sm-6" style="margin-left: 32%">
+
+
+
+          <input class = "form-control" type="text" id="myInput" name="myInput" placeholder="Enter Your Plan">
+          <button type = "button" class = "btn btn-danger" class="addBtn" id="add" onclick="saveData()">Add</button>
+
+
+        </div>
+      </div>
+      <div>
+        <ul id="myUL">
+        </ul>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      function saveData() {
+        var newItem = $('#myInput').val();
+        if (newItem == "") {
+          alert("You must write something!");
+        } else {
+          var url = "/todo/create";
+          var settings = {type : "POST",
+                          data : {"newItem" : newItem},
+                          success: function(response) {
+                            var li = document.createElement("li");
+                            li.appendChild(document.createTextNode(response.result));
+                            var span = document.createElement("span");
+                            span.appendChild(document.createTextNode("\u00D7"));
+                            span.className = 'close';
+                            li.appendChild(span);
+                            $('#myUL').append(li);
+                          },
+                          error: function(error) {
+                            console.log(error);
+                          }};
+          $.ajax(url, settings);
+          $('#myInput').val("");
+        }
+      }
+
+      function deleteItem() {
+        $("#myUL").click(function(e) {
+          if (e.target.tagName === 'SPAN') {
+            var task = e.target.parentElement.innerText.slice(0, -1);
+            console.log(task);
+            var url = "/todo/delete";
+            var settings = {type : "DELETE",
+                            data : {item : task},
+                            success : function(response) {
+                              console.log(response.result);
+                            },
+                            error : function(error) {
+                              console.log(error);
+                            }};
+            $.ajax(url, settings);
+            e.target.parentElement.remove();
+          }
+        })
+      }
+
+      function setup() {
+        $('#add').click(saveData);
+        $('#myInput').keypress(function(e){
+            if(e.keyCode == 13){
+              e.preventDefault();
+              saveData();
+            }
+        });
+        deleteItem();
+      }
+      $(document).ready(setup);
+    </script>
+  </body>
+</html>
