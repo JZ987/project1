@@ -39,12 +39,13 @@ ul li.checked {
   text-decoration: line-through;
 }
 
-#myUL {
+#MyList {
   margin-top: 2%;
   margin-left: 25%;
 }
 
-.close:hover{
+
+/*.close:hover{
   font-size: 30px;
   color: white;
 }
@@ -52,5 +53,5 @@ ul li.checked {
 .close {
   margin-right: 43%;
   color: white;
-}
+}*/
 
