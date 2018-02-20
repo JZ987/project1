@@ -24,6 +24,7 @@ ul li:hover {
   font-size: 20px;
   color: white;
   font-weight: bold;
+  font-style: italic;
 }
 
 li {
@@ -38,23 +39,25 @@ li {
   text-decoration: line-through;
 }*/
 
+/*#newContent {
+  width: 100%;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+}*/
+
 #MyList {
   margin-top: 2%;
-  margin-left: 25%;
+  margin-left: 28%;
 }
 
 .close {
   position: absolute;
   right: 40%;
-  margin-right: 43%;
+  color: white;
+}
+.close:hover {
   color: white;
 }
 
-.close:hover{
-  position: absolute;
-  right: 40%;
-  font-size: 30px;
-  color: white;
-}
 
 

@@ -1,44 +1,45 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 12 14:02:28 2018
-
-@author: Zhoukx.joseph
-"""
-from flask import Flask, render_template, request, json, session, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, session
+import json
 
 todo = []
 app = Flask(__name__)
-app.secret_key = "\xa0\x1f\x02v#\xa1\x1e;\xfc\x0f/\x13Cz\x0e\x91\x1e\x08\x9a5\xb0Je\x01"
+app.secret_key = "the_secrete_key_which!.di!345"
 
-@app.route('/')
-def index():
-    session['username'] = todo
-    return render_template("index.html")
+@app.route("/")
+def home():
+	return render_template("home.html")
 
-@app.route('/todo/create', methods=['POST'])
+@app.route("/todo/create", methods=["POST"])
 def createItem():
-    newItem = request.form['newItem']
-    todo.append(newItem)
-    session['username'] = todo
-    return jsonify({"result" : "success"})
+    newItem = request.form["InputData"]
+    if(newItem !=""):
+        todo.append(newItem)
+        session["user"] = todo
+        return jsonify({"success" : session["user"][-1]})
+    return jsonify({"error" : "no input"})
 
-@app.route('/todo/read')
-def fetchItems():
-    return jsonify({"result" : "success", "data" : session['username']})
+@app.route("/todo/read")
+def getList():
+	session["user"] = todo
+	return jsonify(session["user"])
 
-@app.route('/todo/update', methods=['PUT'])
-def updateItems():
-    index = todo.index(request.form['old'])
-    todo[index] = request.form['item']
-    session['username'] = todo
-    return jsonify({"result" : "success"})
+@app.route("/todo/delete", methods=["DELETE"])
+def deleteItem():
+	Deleted = request.data.decode("utf-8")
+	global todo
+	todo = [ x for x in todo if x != Deleted]
+	session['user']=todo
+	return jsonify(session["user"])
 
-@app.route('/todo/delete', methods=['DELETE'])
-def deteleItem():
-    todo.remove(request.form['item'])
-    session['username'] = todo
-    return jsonify({"result" : "success"})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/todo/update", methods=["PUT"])
+def updateItem():
+	Old = request.form['old']
+	New = request.form['item']
+	todo[todo.index(Old)] = New
+	session['user']=todo
+	return jsonify({"success" : New})
+
+
+if __name__ == "__main__":
+	app.run (debug=True)
