@@ -29,7 +29,7 @@ def deleteItem():
 	global todo
 	todo = [ x for x in todo if x != Deleted]
 	session['user']=todo
-	return jsonify(session["user"])
+	return jsonify({'success' : Deleted})
 
 
 @app.route("/todo/update", methods=["PUT"])

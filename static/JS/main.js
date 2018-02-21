@@ -49,6 +49,8 @@ $(document).ready(function() {
 
     $("#MyList").on("click", ".close", function() {
         var task = $(this).parent().html().slice(0,-28);
+        //$(this).parent().find('li').last().remove();
+        $(this).parent().remove();
         console.log(task);
         $.ajax({
             data: task,
@@ -57,16 +59,17 @@ $(document).ready(function() {
             url: "/todo/delete"
         })
         .done(function(data) {
-            $("#MyList").empty();
-            $.each(data, function(index, item) { 
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item));
-                var span = document.createElement("span");
-                span.appendChild(document.createTextNode("\u00D7"));
-                span.className = 'close';
-                li.appendChild(span);
-                $MyList.append(li);
-            });
+            // $("#MyList").empty();
+            // $.each(data, function(index, item) { 
+            //     var li = document.createElement("li");
+            //     li.appendChild(document.createTextNode(item));
+            //     var span = document.createElement("span");
+            //     span.appendChild(document.createTextNode("\u00D7"));
+            //     span.className = 'close';
+            //     li.appendChild(span);
+            //     $MyList.append(li);
+            // });
+            console.log(data.success);
         });
         event.preventDefault();
     });
