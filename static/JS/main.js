@@ -74,7 +74,7 @@ $(document).ready(function() {
         oriText = task[0].innerHTML;
         keys = task[1].innerHTML;
         $(this).text("");
-        $("<input id='newContent'type='text' style='width:350px;background:transparent;color:white;'>").appendTo(this).focus().val(oriText);
+        $("<input id='newContent'type='text' style='width:45%;background:transparent;color:white;'>").appendTo(this).focus().val(oriText);
       }
     });
     $("#MyList").on('keypress', 'input', function (e) {
