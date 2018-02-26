@@ -55,7 +55,7 @@ $(document).ready(function() {
                       data : {data : task[0].innerHTML, key:task[1].innerHTML,},
                       success : function(response) {
                         oriText = "";
-                        console.log(response.result);
+                        console.log(response.success);
                       },
                       error : function(error) {
                         console.log(error);
@@ -98,6 +98,10 @@ $(document).ready(function() {
         oriText = "";
       }
     });
+    $("#MyList").on('focusout', 'li > input', function() {
+      $(this).parent().html(oriText +"<p style='display:none;'>" + oriText + "</p>" +"<p style='display:none;'>" + keys + "</p>"+ "<span class='close'>×</span>");
+      oriText = "";
+  });
 
 
 });
