@@ -12,6 +12,7 @@ div.header {
 }
 
 h2 {
+  margin-top: 8%;
   width:100%;
   position: relative;
   text-align: center;
@@ -24,7 +25,6 @@ ul li:hover {
   font-size: 20px;
   color: white;
   font-weight: bold;
-  font-style: italic;
 }
 
 li {
@@ -52,7 +52,7 @@ li {
 
 .close {
   position: absolute;
-  right: 40%;
+  right: 35%;
   color: white;
 }
 .close:hover {
