@@ -1,44 +1,79 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 12 14:02:28 2018
+from flask import Flask, request, jsonify, render_template
+import pymysql.cursors
+import json
 
-@author: Zhoukx.joseph
-"""
-from flask import Flask, render_template, request, json, session, jsonify, redirect
-
-todo = []
 app = Flask(__name__)
-app.secret_key = "\xa0\x1f\x02v#\xa1\x1e;\xfc\x0f/\x13Cz\x0e\x91\x1e\x08\x9a5\xb0Je\x01"
 
-@app.route('/')
-def index():
-    session['username'] = todo
-    return render_template("index.html")
+conn = pymysql.connect(host = 'localhost',
+					   user='username',
+					   password='cs1122project',
+					   database='todo')
+# conn.cursor().execute('CREATE DATABASE todo')
+# conn.cursor().execute("CREATE TABLE todolist (id smallint unsigned not null auto_increment, things varchar(65) not null, primary key (id));")
 
-@app.route('/todo/create', methods=['POST'])
+try:
+    with conn.cursor() as cursor:
+    	sql = "SELECT * FROM todolist"
+    	cursor.execute(sql)
+    	result = cursor.fetchall()
+    	print(result)
+
+finally:
+	print("connect successfully")
+
+@app.route("/")
+def home():
+	return render_template("home.html")
+
+@app.route("/todo/create", methods=["POST"])
 def createItem():
-    newItem = request.form['newItem']
-    todo.append(newItem)
-    session['username'] = todo
-    return jsonify({"result" : "success"})
+    newItem = request.form["InputData"]
+    if(newItem !=""):
+        try:
+    		with conn.cursor() as cursor:
+        		sql = "INSERT INTO `todolist` (`things`) VALUES (%s)"
+        		cursor.execute(sql, (newItem))
+        		priKey = cursor.lastrowid
+    		conn.commit()
+    	finally:
+    		return jsonify({"success" : newItem, 'key' : priKey})
+    return jsonify({"error" : "no input"})
 
-@app.route('/todo/read')
-def fetchItems():
-    return jsonify({"result" : "success", "data" : session['username']})
+@app.route("/todo/read")
+def getList():
+	try:
+	    with conn.cursor() as cursor:
+	    	sql = "SELECT * FROM todolist"
+	    	cursor.execute(sql)
+	    	result = cursor.fetchall()
+	finally:
+		return jsonify(result)
 
-@app.route('/todo/update', methods=['PUT'])
-def updateItems():
-    index = todo.index(request.form['old'])
-    todo[index] = request.form['item']
-    session['username'] = todo
-    return jsonify({"result" : "success"})
+@app.route("/todo/delete", methods=["DELETE"])
+def deleteItem():
+	Deleted = request.form["data"]
+	key = request.form["key"]
+	try:
+	    with conn.cursor() as cursor:
+	    	sql = "DELETE FROM todolist WHERE id=(%s)"
+	    	cursor.execute(sql,(key))
+	    conn.commit()
+	finally:
+		return jsonify({'success' : Deleted})
 
-@app.route('/todo/delete', methods=['DELETE'])
-def deteleItem():
-    todo.remove(request.form['item'])
-    session['username'] = todo
-    return jsonify({"result" : "success"})
+@app.route("/todo/update", methods=["PUT"])
+def updateItem():
+	Old = request.form['old']
+	New = request.form['item']
+	key = request.form['key']
+	try:
+	    with conn.cursor() as cursor:
+	    	sql = "UPDATE todolist SET things =(%s) WHERE id=(%s)"
+	    	cursor.execute(sql,(New, key))
+	    conn.commit()
+	finally:
+		return jsonify({'success' : New})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+if __name__ == "__main__":
+	app.run (debug=True)
