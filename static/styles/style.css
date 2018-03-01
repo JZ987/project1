@@ -22,7 +22,7 @@ h2 {
 }
 
 ul li:hover {
-  font-size: 20px;
+  font-size: 17px;
   color: white;
   font-weight: bold;
 }
@@ -30,7 +30,7 @@ ul li:hover {
 li {
   border-width: 0 2px 2px 0;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 14 px;
+  font-size: 16 px;
   color: white;
 }
 
@@ -47,7 +47,7 @@ li {
 
 #MyList {
   margin-top: 2%;
-  margin-left: 28%;
+  margin-left: 26%;
 }
 
 .close {
@@ -58,6 +58,3 @@ li {
 .close:hover {
   color: white;
 }
-
-
-
