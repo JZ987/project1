@@ -19,7 +19,11 @@ ipadd.txt -IP address key for AWS</br>
 jkzctKeyPair.pem -Key Pair for AWS</br>
 static/ -contains static css, js, and image files</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JS/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main.js -js making requests to back end</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;images/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;img.jpeg -background image</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;styles/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bootstrap.css -BootStrap library for styling</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.css -css stylesheet</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.html</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.html -home page</br>
