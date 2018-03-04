@@ -4,8 +4,8 @@ import json
 
 app = Flask(__name__)
 
-conn = pymysql.connect(host = 'localhost',
-					   user='username',
+conn = pymysql.connect(host = '0.0.0.0', 
+					   user='root',
 					   password='cs1122project',
 					   database='todo')
 # conn.cursor().execute('CREATE DATABASE todo')
