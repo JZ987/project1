@@ -13,13 +13,13 @@
 - [Connie Zhou] (https://github.com/soy-sauce)
 - [Kaixuan Zhou] (https://github.com/ZhouJoseph)
 ## Project Map
-README.md -this file
-app.py -contains all app routes and starts server
-ipadd.txt -IP address key for AWS
-jkzctKeyPair.pem -Key Pair for AWS
-static/ -contains static css, js, and image files
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JS/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;images/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;styles/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.html
+README.md -this file /br
+app.py -contains all app routes and starts server </br>
+ipadd.txt -IP address key for AWS</br>
+jkzctKeyPair.pem -Key Pair for AWS</br>
+static/ -contains static css, js, and image files</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JS/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;images/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;styles/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.html</br>
