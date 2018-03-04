@@ -25,5 +25,5 @@ static/ -contains static css, js, and image files</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;styles/</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bootstrap.css -BootStrap library for styling</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.css -css stylesheet</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/</br>
+templates/</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.html -home page</br>
