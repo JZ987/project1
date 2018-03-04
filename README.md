@@ -1,17 +1,17 @@
 <!-- # project1-tg1632-zds238-cz1529-kz1005-jjz282 -->
 # Project 1 (Introduction to Computer Science) :thumbsup:
 ## Web development project for Introduction to CS at NYU Tandon
-- This project is an online to-do list application using HTML, CSS, and Javascript for the front end interface and Flask and MySQL for backend development. The application is hosted on a server using Amazon web services as well as NGINX and Gunicorn.
+- This project is an online to-do list application using HTML, CSS, and Javascript for the front end interface and Flask, PyMySQL and MySQL for backend development. The application is hosted on a server using Amazon web services as well as NGINX and Gunicorn.
 ## Web URL 
 - http://ec2-18-222-54-217.us-east-2.compute.amazonaws.com/
 ## How to run the project
-
+- Use the public key to sign in the EC2 Ubuntu server, and go to the project1 directory (all the files, as well as keypem are in the directory). We already use the command: gunicorn app:app& to let the server run "forever".
 ## Group members:
-- Taimur Ghani
-- [Zubin Srivastava] (https://github.com/zsrivastava)
-- [Jack Zheng] (https://github.com/JZ987)
-- [Connie Zhou] (https://github.com/soy-sauce)
-- [Kaixuan Zhou] (https://github.com/ZhouJoseph)
+- Taimur Ghani[tg1632]
+- [Zubin Srivastava][zds238] (https://github.com/zsrivastava)
+- [Jack Zheng][jjz282] (https://github.com/JZ987)
+- [Connie Zhou][cz1529] (https://github.com/soy-sauce)
+- [Kaixuan Zhou][kz1005] (https://github.com/ZhouJoseph)
 ## Project Map
 README.md -this file /br
 app.py -contains all app routes and starts server </br>
