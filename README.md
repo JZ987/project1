@@ -1,6 +1,7 @@
 <!-- # project1-tg1632-zds238-cz1529-kz1005-jjz282 -->
 # Project 1 (Introduction to Computer Science) :thumbsup:</br>
-# Team Name: The Shinning Lists</br>
+## Team Name
+- The Shinning Lists
 ## Web development project for Introduction to CS at NYU Tandon
 - This project is an online to-do list application using HTML, CSS, and Javascript for the front end interface and Flask, PyMySQL and MySQL for backend development. The application is hosted on a server using Amazon web services as well as NGINX and Gunicorn.
 ## Web URL 
